@@ -1,0 +1,25 @@
+[user]
+	name = Gauthier Östervall
+    email = gauthier@cipherstone.com
+[core]
+    editor = emacsclient -c -a emacs
+    excludesfile = ~/.gitignore
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[alias]
+    b = branch
+    d = diff
+    co = !git checkout
+    hist = !gitk --all&
+    st = status
+    sm = submodule
+    g = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset%x09%s%C(yellow)%d%Creset' --abbrev-commit --date=short
+    graph = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset%x09%Cblue[%an]%Creset%x09%s%C(yellow)%d%Creset' --abbrev-commit --date=short
+
+[push]
+    #default = simple
+    default = current
+    followTags = true
