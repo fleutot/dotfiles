@@ -126,8 +126,13 @@ else
     user="\u" # extra space after clock display
 fi
 
+gitcolorbkd=$txtylwbkd
+gitcolorfg=$txtblk
+# These are going to be redefined in the prompt command if the separator character is defined
 halfblockin=$txtrst$accentcolorbkd" "
-halfblockout=$txtrst$accentcolorbkd" "
+halfblockouttodollar=$txtrst$accentcolorbkd" "
+halfblockouttogit=$txtrst$accentcolorbkd" "
+halfblockgittodollar=$txtrst$accentcolorbkd" "
 
 function __prompt_command() {
     local EXIT="$?"
@@ -156,13 +161,22 @@ function __prompt_command() {
         stopped=""
     fi
 
-    # Needs support for UTF-8
+    # Separator char. Needs support for UTF-8
     if [[ $LC_ALL != "C" ]]; then
         halfblockin=$txtrst$accentcolorbkd$resultcolorfg$'\u258b'
-        halfblockout=$txtrst$accentcolorbkd$resultcolorfg$'\u2590'
+        halfblockouttodollar=$txtrst$accentcolorbkd$resultcolorfg$'\u2590'
+        halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
+        halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
     fi
 
-    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user@\h:\w$txtylwbkd\$(git_ps1_no_sshfs)$halfblockout"
+    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user@\h:\w"
+    gitstring=$(git_ps1_no_sshfs)
+
+    if [ "$gitstring" == "" ]; then
+        PS1+="$halfblockouttodollar"
+    else
+        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$(git_ps1_no_sshfs)$halfblockgittodollar"
+    fi
 
     if [ $EXIT != 0 ]; then
         PS1+="$txtrst$txtredrev$EXIT!"
