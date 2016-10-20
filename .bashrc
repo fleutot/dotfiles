@@ -113,17 +113,19 @@ unset promptbkgd
 if [ $HOSTNAME == "gauss" ]; then
     accentcolorbkd=$txtwhtbkd
     accentcolorfg=$txtwht
-    clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
-    user="\u" # extra space after clock display
+    # clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
+    clockdisp="[\$(date '+%k:%M')]"
+    user="\u"
 elif [ $HOSTNAME == "ionian" ]; then
     accentcolorbkd=$txtwhtbkd
     accentcolorfg=$txtwht
+    clockdisp="[\$(date '+%k:%M')]"
     user="\u"
 else
     accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
     accentcolorfg='\[\e[96m\]'    # 96: light cyan
-    clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
-    user="\u" # extra space after clock display
+    clockdisp="[\$(date '+%k:%M')]"
+    user="\u"
 fi
 
 gitcolorbkd=$txtylwbkd
@@ -132,7 +134,7 @@ gitcolorfg=$txtblk
 halfblockin=$txtrst$accentcolorbkd" "
 halfblockouttodollar=$txtrst$accentcolorbkd" "
 halfblockouttogit=$txtrst$accentcolorbkd" "
-halfblockgittodollar=$txtrst$accentcolorbkd" "
+halfblockgittodollar=$txtrst$accentcolorbkd""
 
 function __prompt_command() {
     local EXIT="$?"
