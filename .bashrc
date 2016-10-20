@@ -227,6 +227,7 @@ alias lla='ll -a'
 alias l='ls -CF'
 
 alias cdh='cd /opt/gauthier' # for local disk home
+alias g='git'
 
 ack() {
     # pass default options, pager
