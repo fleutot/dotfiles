@@ -285,7 +285,6 @@ alias gitroot='cd $(git rev-parse --show-cdup)'
 
 # PATH update was somewhere else when I used sobel, but I can't find where. Add here
 PATH=~/bin:$PATH
-PATH=~/.cabal/bin:$PATH
 export PATH
 
 GTK_THEME=Vertex-Dark
