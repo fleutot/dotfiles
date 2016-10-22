@@ -117,8 +117,8 @@ if [ $HOSTNAME == "gauss" ]; then
     clockdisp="[\$(date '+%k:%M')]"
     user="\u"
 elif [ $HOSTNAME == "ionian" ]; then
-    accentcolorbkd=$txtwhtbkd
-    accentcolorfg=$txtwht
+    accentcolorbkd=$txtblubkd
+    accentcolorfg=$txtblu
     clockdisp="[\$(date '+%k:%M')]"
     user="\u"
 else
