@@ -1,8 +1,22 @@
 #!/bin/bash
 
+this_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+
 for f in $(find -name ".*" -type f); do
     if [[ -e $HOME/$f ]]; then
         mv $HOME/$f $HOME/$f.old
     fi
     ln $f $HOME/$f
+done
+
+# Back up and clean other gitk files that may be interfering
+potential_other_gitk_files="${XDG_CONFIG_HOME}/git/gitk
+$HOME/.config/git/gitk"
+for f in $potential_other_gitk_files; do
+    if [ -f "${f}" ]; then
+        mv "${f}" "${f}.backup"
+        echo -e "gitk.backup was created by $this_script\n
+A gitk file here takes precedence over ~/.gitk (see man gitk), so it has been moved out of the way.\n
+~/.gitk to be used instead of $f" >> $(dirname "${f}")/why_old_readme.txt
+    fi
 done
