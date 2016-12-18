@@ -1,12 +1,13 @@
 #!/bin/bash
 
-this_script="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+this_script="${this_dir}/$(basename "${BASH_SOURCE[0]}")"
 
 for f in $(find -name ".*" -type f); do
     if [[ -e $HOME/$f ]]; then
         mv $HOME/$f $HOME/$f.old
     fi
-    ln $f $HOME/$f
+    ln -s ${this_dir}/$f $HOME/$f
 done
 
 # Back up and clean other gitk files that may be interfering
