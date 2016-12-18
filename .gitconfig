@@ -23,3 +23,4 @@
     #default = simple
     default = current
     followTags = true
+    recurseSubmodules = check
