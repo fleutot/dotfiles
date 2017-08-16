@@ -1,8 +1,11 @@
 [user]
 	name = Gauthier Östervall
-    email = gauthier@cipherstone.com
+    email = gauthier.ostervall@lumenradio.com
 [core]
-    editor = emacsclient -c -a emacs
+    #editor = emacsclient -c -a emacs
+    #editor = emacsclient -a emacs # -c not recognized in Mac OS
+    editor = emacs -nw -q
+    # --load ~/dotfiles/.gitcommit # For Mac OS, emacsclient not working yet
     excludesfile = ~/.gitignore
 [color]
     diff = auto
@@ -24,3 +27,4 @@
     default = current
     followTags = true
     recurseSubmodules = check
+[gui]

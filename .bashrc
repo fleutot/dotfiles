@@ -164,7 +164,7 @@ function __prompt_command() {
     fi
 
     # Separator char. Needs support for UTF-8
-    if [[ $LC_ALL != "C" ]]; then
+    if [[ $LC_ALL != "C" && $(uname -s) != "Darwin" ]] ; then
         halfblockin=$txtrst$accentcolorbkd$resultcolorfg$'\u258b'
         halfblockouttodollar=$txtrst$accentcolorbkd$resultcolorfg$'\u2590'
         halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
@@ -172,12 +172,17 @@ function __prompt_command() {
     fi
 
     PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user@\h:\w"
-    gitstring=$(git_ps1_no_sshfs)
+    if [[ $(uname -s) != "Darwin" ]] ; then
+        gitstring=$(git_ps1_no_sshfs)
+    else
+        source ~/bin/git-prompt
+        gitstring=$(__git_ps1)
+    fi
 
     if [ "$gitstring" == "" ]; then
         PS1+="$halfblockouttodollar"
     else
-        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$(git_ps1_no_sshfs)$halfblockgittodollar"
+        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$gitstring$halfblockgittodollar"
     fi
 
     if [ $EXIT != 0 ]; then
@@ -218,6 +223,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+elif [[ $(uname -s) == "Darwin" ]] ; then
+    alias ls='ls -G'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -232,7 +242,7 @@ alias g='git'
 ack() {
     # pass default options, pager
     # --no-init prevents clearing the screen at exit
-    /usr/bin/ack --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+    $(which ack) --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -262,6 +272,9 @@ alias e='emacsclient -c -a ""'
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
+if [[ $(uname -s) == "Darwin" ]] ; then
+    alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
+fi
 
 # Autojump, to change directory fast with history. Autojump itself installed via
 # Ubuntu Software Center entry for Bash.
@@ -276,6 +289,9 @@ alias go=gnome-open
 # other aliases
 alias pag='ps aux | grep'
 alias gitroot='cd $(git rev-parse --show-cdup)'
+alias gr='gitroot'
+alias h='history'
+alias hg='history | grep'
 
 # Make terminal urgent at the end of a command. Useful after a long command, if the window is not visible.
 #export PROMPT_COMMAND='pid-urgent $(ps --no-headers -o ppid | head -1) 2>/dev/null'
@@ -292,8 +308,40 @@ export GTK_THEME
 GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
 export GTK2_RC_FILES
 
-# lcam does not run if this is not set. Swedish chars do not work if it is set.
-#export LC_ALL=C
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Expand ! expressions (!!, !*, !^, ...) on space.
 bind Space:magic-space
+
+##
+# Your previous /Users/gauthier/.bash_profile file was backed up as /Users/gauthier/.bash_profile.macports-saved_2017-03-03_at_10:12:12
+##
+if [ -d "/opt/local/bin" ]; then
+    # MacPorts Installer addition on 2017-03-03_at_10:12:12: adding an appropriate PATH variable for use with MacPorts.
+    export PATH="/opt/local/bin:$PATH"
+fi
+if [ -d "/opt/local/sbin" ]; then
+    # MacPorts Installer addition on 2017-03-03_at_10:12:12: adding an appropriate PATH variable for use with MacPorts.
+    export PATH="/opt/local/sbin:$PATH"
+fi
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+if [ -d "/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin" ]; then
+    export PATH="/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin:$PATH"
+fi
+
+if [ -f ~/bin/.git-completion.bash ]; then
+  source ~/bin/.git-completion.bash
+fi
+
+# For nRF52 SDK
+export NRF52_SDK_ROOT=/opt/nrf52-sdk
+export NRF52_JLINK_PATH=/usr/local/bin/
+
+# For Mira robot tests
+MIRA_HIL_OUTPUT="/tmp/mira-hil-output"
+if [ ! -d $MIRA_HIL_OUTPUT ]; then
+    mkdir $MIRA_HIL_OUTPUT
+fi
+export OUTPUTDIR=$MIRA_HIL_OUTPUT # OUTPUTDIR is used in miraos-v1/tests/hil/run_tests.sh

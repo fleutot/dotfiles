@@ -3,7 +3,7 @@
 this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 this_script="${this_dir}/$(basename "${BASH_SOURCE[0]}")"
 
-for f in $(find -name ".*" -type f); do
+for f in $(find . -name ".*" -type f); do
     if [[ -e $HOME/$f ]]; then
         mv $HOME/$f $HOME/$f.old
     fi
