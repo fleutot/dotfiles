@@ -297,3 +297,19 @@ export GTK2_RC_FILES
 
 # Expand ! expressions (!!, !*, !^, ...) on space.
 bind Space:magic-space
+
+### For LumenRadio development
+# nRF52
+if [ -d "/opt/nrfjprog" ]; then
+ export PATH="/opt/nrfjprog:$PATH"
+fi
+if [ -d "/opt/nrf52-sdk" ]; then
+ export NRF52_SDK_ROOT="/opt/nrf52-sdk"
+fi
+if [ -d "/opt/SEGGER" ]; then
+ export NRF52_JLINK_PATH="/opt/SEGGER/"
+fi
+
+if [ -d "/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin" ]; then
+ export PATH="/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin:$PATH"
+fi
