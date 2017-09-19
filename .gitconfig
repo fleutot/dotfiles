@@ -1,6 +1,6 @@
 [user]
-	name = Gauthier Östervall
-    email = gauthier@cipherstone.com
+    name = Gauthier Östervall
+    email = gauthier.ostervall@lumenradio.com
 [core]
     editor = emacsclient -c -a emacs
     excludesfile = ~/.gitignore
@@ -24,3 +24,5 @@
     default = current
     followTags = true
     recurseSubmodules = check
+[credential]
+    helper = cache --timeout 7200
