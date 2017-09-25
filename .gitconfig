@@ -11,7 +11,7 @@
     ui = true
 [alias]
     b = branch
-    d = diff
+    d = diff --no-ext-diff # See diff.external to see what `git diff` runs
     co = !git checkout
     hist = !gitk --all&
     st = status
@@ -26,3 +26,6 @@
     recurseSubmodules = check
 [credential]
     helper = cache --timeout 7200
+[diff]
+    external = side-by-side-diff-for-git.sh
+
