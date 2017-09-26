@@ -287,9 +287,16 @@ alias gitroot='cd $(git rev-parse --show-cdup)'
 PATH=~/bin:$PATH
 export PATH
 
-GTK_THEME=Vertex-Dark
+# Themes seem to be located at /usr/share/themes
+#GTK_THEME=Vertex-Dark
+#GTK_THEME=Adwaita:dark
+# Install with `sudo apt install arc-theme`
+GTK_THEME=Arc-dark
+# GTK_THEME=Blackbird
 export GTK_THEME
-GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
+
+# GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
+GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
 export GTK2_RC_FILES
 
 # lcam does not run if this is not set. Swedish chars do not work if it is set.
