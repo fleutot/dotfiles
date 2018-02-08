@@ -32,3 +32,7 @@ xscreensaver.passwd.thermometer.background:  #101010
 xscreensaver.passwd.thermometer.width:       6
 !datestamp format--see the strftime(3) manual page for details
 !xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
+! Added 170921 to try and get normal sized cursor. Let's see if that works after login.
+Xcursor.size: 32
+Xft.dpi: 100

@@ -1,2 +1,3 @@
 --ignore-file=is:TAGS
 --ignore-dir=build
+--ignore-dir=archive

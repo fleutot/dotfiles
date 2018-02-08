@@ -1,5 +1,6 @@
 *.o
 TAGS
+*.co
 
 # emacs backup files
 *~

@@ -5,3 +5,5 @@ $include /etc/inputrc
 set revert-all-at-newline on
 set completion-ignore-case on
 
+# If ambiguous, show the alternatives on the first tab, not requiring two.
+set show-all-if-ambiguous on

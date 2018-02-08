@@ -110,22 +110,28 @@ MVTO80='\[\e[;80H\]'
 unset promptbkgd
 
 # Different accent color if the current host is not my usual machine.
-if [ $HOSTNAME == "gauss" ]; then
-    accentcolorbkd=$txtwhtbkd
-    accentcolorfg=$txtwht
+if [ $HOSTNAME == "vinden" ]; then
+    # NOTE: 106 does not work in emacs term, it's non-standard. A possible way
+    # to solve this is to use revert instead.
+    accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
+    accentcolorfg='\[\e[96m\]'    # 96: light cyan
     # clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
     clockdisp="[\$(date '+%k:%M')]"
-    user="\u"
+    if [ $USER == "gauthier" ]; then
+	user_host="" # don't print user and host if it's me on my usual machine
+    else
+	user_host="\u@\h:"
+    fi
 elif [ $HOSTNAME == "ionian" ]; then
     accentcolorbkd=$txtblubkd
     accentcolorfg=$txtblu
     clockdisp="[\$(date '+%k:%M')]"
-    user="\u"
+    user_host="\u@\h:"
 else
-    accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
-    accentcolorfg='\[\e[96m\]'    # 96: light cyan
+    accentcolorbkd=$txtwhtbkd
+    accentcolorfg=$txtwht
     clockdisp="[\$(date '+%k:%M')]"
-    user="\u"
+    user_host="\u@\h:"
 fi
 
 gitcolorbkd=$txtylwbkd
@@ -171,7 +177,7 @@ function __prompt_command() {
         halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
     fi
 
-    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user@\h:\w"
+    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user_host\w"
     gitstring=$(git_ps1_no_sshfs)
 
     if [ "$gitstring" == "" ]; then
@@ -228,6 +234,9 @@ alias l='ls -CF'
 
 alias cdh='cd /opt/gauthier' # for local disk home
 alias g='git'
+alias gg='git g -10'
+alias gb='git branch'
+alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
 
 ack() {
     # pass default options, pager
@@ -248,11 +257,17 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features. This might need to be installed with
+# sudo apt-get install bash-completion, at least on Debian.
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+    # Add git completion for git aliases (defined elsewhere)
+    if [ -f /usr/share/bash-completion/completions/git ]; then
+        . /usr/share/bash-completion/completions/git
+        __git_complete g __git_main
+    else
+        echo "No git alias completion available!"
+    fi
 fi
 
 # Emacs daemon and client management.
@@ -275,7 +290,11 @@ alias go=gnome-open
 
 # other aliases
 alias pag='ps aux | grep'
-alias gitroot='cd $(git rev-parse --show-cdup)'
+alias gitroot='cd $(git rev-parse --show-toplevel)'
+alias gitrootup='cd .. && gitroot'
+alias gr='gitroot'
+alias gr..='gitrootup'
+alias xo='xdg-open'
 
 # Make terminal urgent at the end of a command. Useful after a long command, if the window is not visible.
 #export PROMPT_COMMAND='pid-urgent $(ps --no-headers -o ppid | head -1) 2>/dev/null'
@@ -291,12 +310,21 @@ export PATH
 #GTK_THEME=Vertex-Dark
 #GTK_THEME=Adwaita:dark
 # Install with `sudo apt install arc-theme`
-GTK_THEME=Arc-dark
+# GTK_THEME=Arc-dark
 # GTK_THEME=Blackbird
+# Equilux installed with:
+#cd /tmp \
+#    && wget -O equilux.zip https://github.com/ddnexus/equilux-theme/archive/equilux-dev.zip \
+#    && unzip equilux.zip \
+#    && equilux-theme-equilux-dev/install.sh \
+#    && rm -rf equilux* \
+#    && sed -i 's/symbolic/regular/g' /usr/share/themes/Equilux*/gnome-shell/gnome-shell.css
+GTK_THEME=Equilux-compact
 export GTK_THEME
 
 # GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
-GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+# GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+GTK2_RC_FILES=/usr/share/themes/Equilux-compact/gtk-2.0/gtkrc
 export GTK2_RC_FILES
 
 # lcam does not run if this is not set. Swedish chars do not work if it is set.
@@ -319,4 +347,16 @@ fi
 
 if [ -d "/opt/gcc-arm-none-eabi-6-2017-q2/bin" ]; then
  export PATH="/opt/gcc-arm-none-eabi-6-2017-q2/bin:$PATH"
+fi
+
+if [ $HOSTNAME == "vinden" ]; then
+    # My nrf52-dk boards, to use with `make flash.$nrf0`
+    export nrf0=682641514
+    export nrf1=682672792
+    export nrf2=682850131
+    export jlink=268006363
+fi
+
+if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 fi
