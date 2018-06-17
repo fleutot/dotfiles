@@ -244,6 +244,11 @@ ack() {
     /usr/bin/ack --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
 }
 
+ag() {
+    # pass default options, pager
+    /usr/bin/ag --ignore-dir vendor/contiki --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -295,6 +300,8 @@ alias gitrootup='cd .. && gitroot'
 alias gr='gitroot'
 alias gr..='gitrootup'
 alias xo='xdg-open'
+alias fn='find -iname'
+alias fd='find -type d'
 
 # Make terminal urgent at the end of a command. Useful after a long command, if the window is not visible.
 #export PROMPT_COMMAND='pid-urgent $(ps --no-headers -o ppid | head -1) 2>/dev/null'
