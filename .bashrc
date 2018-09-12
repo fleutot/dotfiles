@@ -147,6 +147,8 @@ function __prompt_command() {
     PS1="${debian_chroot:+($debian_chroot)}$promptbkgd"
     arrow=$'\u25b6'
 
+    PS1+="$txtpurrev${VIRTUAL_ENV##*/}$txtrst"
+
     if [ $EXIT != 0 ]; then
         PS1+="$txtredrev"
         resultcolorfg=$txtred
