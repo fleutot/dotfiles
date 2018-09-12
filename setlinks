@@ -3,12 +3,18 @@
 this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 this_script="${this_dir}/$(basename "${BASH_SOURCE[0]}")"
 
-for f in $(find -name ".*" -type f); do
+for f in $(find -maxdepth 1 -name ".*" -type f); do
     if [[ -e $HOME/$f ]]; then
         mv $HOME/$f $HOME/$f.old
     fi
     ln -s ${this_dir}/$f $HOME/$f
 done
+
+gdb_origin=${this_dir}/gdbinit/gdbinit
+gdb_link=$HOME/.gdbinit
+if [[ -f ${gdb_origin} ]] ; then
+    ln -s ${gdb_origin} ${gdb_link}
+fi
 
 # Back up and clean other gitk files that may be interfering
 potential_other_gitk_files="${XDG_CONFIG_HOME}/git/gitk
