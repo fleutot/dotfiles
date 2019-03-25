@@ -373,5 +373,9 @@ export LIBDIR="/home/gauthier/code/mira/build/libmira"
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 fi
+
+# Java sometimes need to know that I am using a non-reparenting WM
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Ignore eof for exiting the terminal
 export IGNOREEOF=2
