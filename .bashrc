@@ -369,3 +369,5 @@ fi
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 fi
+# Ignore eof for exiting the terminal
+export IGNOREEOF=2
