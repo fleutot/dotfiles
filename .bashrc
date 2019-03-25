@@ -362,8 +362,10 @@ if [ $HOSTNAME == "vinden" ]; then
     # My nrf52-dk boards, to use with `make flash.$nrf0`
     export nrf0=682641514
     export nrf1=682672792
-    export nrf2=682850131
+    #export nrf2=682850131 # This one has disappeared somewhere.
+    export nrf2=682496772
     export jlink=268006363
+    export nxp=621000000
 fi
 
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
