@@ -6,3 +6,7 @@ TAGS
 *~
 *#
 .#*
+
+# build directories
+_build
+build
