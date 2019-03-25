@@ -354,8 +354,8 @@ if [ -d "/opt/SEGGER" ]; then
  export NRF52_JLINK_PATH="/opt/SEGGER/"
 fi
 
-if [ -d "/opt/gcc-arm-none-eabi-6-2017-q2/bin" ]; then
- export PATH="/opt/gcc-arm-none-eabi-6-2017-q2/bin:$PATH"
+if [ -d "/opt/gcc-arm-none-eabi-4_9-2015q3/bin" ]; then
+ export PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:$PATH"
 fi
 
 if [ $HOSTNAME == "vinden" ]; then
