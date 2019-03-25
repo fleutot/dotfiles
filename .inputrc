@@ -7,3 +7,7 @@ set completion-ignore-case on
 
 # If ambiguous, show the alternatives on the first tab, not requiring two.
 set show-all-if-ambiguous on
+
+# Arrows after writing the start of a command searches with that as a filter.
+"\e[A":history-search-backward
+"\e[B":history-search-forward
