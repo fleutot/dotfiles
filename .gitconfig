@@ -3,6 +3,7 @@
     email = gauthier.ostervall@lumenradio.com
 [core]
     editor = emacsclient -c -a emacs
+    #editor = emacs -nw
     excludesfile = ~/.gitignore
 [color]
     diff = auto
