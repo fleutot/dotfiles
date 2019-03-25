@@ -368,6 +368,8 @@ if [ $HOSTNAME == "vinden" ]; then
     export nxp=621000000
 fi
 
+export LIBDIR="/home/gauthier/code/mira/build/libmira"
+
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 fi
