@@ -216,54 +216,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -lFhA'
-alias la='ls -A'
-alias lla='ll -a'
-alias l='ls -CF'
-
-alias cdh='cd /opt/gauthier' # for local disk home
-alias g='git'
-alias gg='git g -10'
-alias gb='git branch'
-alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
-
-ack() {
-    # pass default options, pager
-    # --no-init prevents clearing the screen at exit
-    /usr/bin/ack --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
-}
-
-ag() {
-    # pass default options, pager
-    /usr/bin/ag --ignore-dir vendor/contiki --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
-}
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features. This might need to be installed with
 # sudo apt-get install bash-completion, at least on Debian.
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -280,7 +232,6 @@ fi
 # Emacs daemon and client management.
 # Emacs --daemon must already be running (e.g. started on log in).
 # from http://www.emacswiki.org/emacs/EmacsAsDaemon
-alias e='emacsclient -c -a ""'
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
@@ -291,19 +242,9 @@ if [[ -x "/usr/bin/autojump" ]]; then
     source /usr/share/autojump/autojump.bash
 fi
 
-# gnome-open, in order to use the default application to open a file.
-# For example to open a doc with the default editor: $ go my_doc.doc
-alias go=gnome-open
-
-# other aliases
-alias pag='ps aux | grep'
-alias gitroot='cd $(git rev-parse --show-toplevel)'
-alias gitrootup='cd .. && gitroot'
-alias gr='gitroot'
-alias gr..='gitrootup'
-alias xo='xdg-open'
-alias fn='find -iname'
-alias fd='find -type d'
+if [ -f ~/dotfiles/.bash_aliases ]; then
+    . ~/dotfiles/.bash_aliases
+fi
 
 # Make terminal urgent at the end of a command. Useful after a long command, if the window is not visible.
 #export PROMPT_COMMAND='pid-urgent $(ps --no-headers -o ppid | head -1) 2>/dev/null'
@@ -366,6 +307,7 @@ if [ $HOSTNAME == "vinden" ]; then
     export nrf2=682496772
     export jlink=268006363
     export nxp=621000000
+    export nrf4=683314787 # nrf52840dk
 fi
 
 export LIBDIR="/home/gauthier/code/mira/build/libmira"
