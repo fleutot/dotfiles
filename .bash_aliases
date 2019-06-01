@@ -1,4 +1,3 @@
-
 # gnome-open, in order to use the default application to open a file.
 # For example to open a doc with the default editor: $ go my_doc.doc
 alias go=gnome-open
@@ -27,15 +26,13 @@ alias gg='git g -10'
 alias gb='git branch'
 alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
 
-ack() {
-    # pass default options, pager
-    # --no-init prevents clearing the screen at exit
-    /usr/bin/ack --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
-}
-
 ag() {
-    # pass default options, pager
-    /usr/bin/ag --ignore-dir vendor/contiki --ignore-dir build --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+    if [ -t 1 ]; then
+        # pass default options, pager
+	/usr/bin/env ag --ignore-dir vendor/contiki --ignore-dir build --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
+    else
+	/usr/bin/env ag $*
+    fi
 }
 
 # Is this really needed??
@@ -78,3 +75,23 @@ function _cm()
     popd > /dev/null
 }
 complete -o nospace -F _cm cm
+
+# cd activates virtualenv if is exists
+function cd() {
+    builtin cd "$@"
+
+    if [ $(dirname "$VIRTUAL_ENV") == $(pwd) ] ; then
+	# Already at the active virtual env
+	return
+    fi
+
+    if [[ -d ./venv ]] ; then
+	if type deactivate > /dev/null 2>&1 ; then
+	    printf "Deactivating virtualenv %s\n" "$VIRTUAL_ENV"
+	    deactivate
+	fi
+
+	source ./venv/bin/activate
+	printf "Setting up   virtualenv %s\n" "$VIRTUAL_ENV"
+    fi
+}

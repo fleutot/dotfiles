@@ -185,7 +185,7 @@ function __prompt_command() {
     if [ "$gitstring" == "" ]; then
         PS1+="$halfblockouttodollar"
     else
-        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$(git_ps1_no_sshfs)$halfblockgittodollar"
+        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$gitstring$halfblockgittodollar"
     fi
 
     if [ $EXIT != 0 ]; then
@@ -325,3 +325,5 @@ fi
 
 # Ignore eof for exiting the terminal
 export IGNOREEOF=2
+
+export LD_LIBRARY_PATH="/opt/JLink_Linux_V644h_x86_64:$LD_LIBRARY_PATH"
