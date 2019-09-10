@@ -310,8 +310,6 @@ if [ $HOSTNAME == "vinden" ]; then
     export nrf4=683314787 # nrf52840dk
 fi
 
-export LIBDIR="/home/gauthier/code/mira/build/libmira"
-
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 elif [ -d "/usr/lib/jvm/java-8-oracle/" ]; then
