@@ -314,10 +314,14 @@ export LIBDIR="/home/gauthier/code/mira/build/libmira"
 
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+elif [ -d "/usr/lib/jvm/java-8-oracle/" ]; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 fi
 
-# Java sometimes need to know that I am using a non-reparenting WM
-export _JAVA_AWT_WM_NONREPARENTING=1
+# For running cooja via X-forwarding in a non-reparentign WM (xmonad)
+if [ -z $DESKTOP_VERSION ]; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
 
 # Ignore eof for exiting the terminal
 export IGNOREEOF=2
