@@ -1,0 +1,13 @@
+[/]
+background-color='rgb(52,50,46)'
+bold-color='rgb(214,205,181)'
+bold-color-same-as-fg=false
+bold-is-bright=false
+font='Terminus (TTF) Medium 10'
+foreground-color='rgb(173,163,135)'
+palette=['rgb(40,40,40)', 'rgb(200,73,68)', 'rgb(104,157,106)', 'rgb(215,153,33)', 'rgb(69,110,136)', 'rgb(177,98,134)', 'rgb(69,133,136)', 'rgb(210,202,189)', 'rgb(124,111,100)', 'rgb(231,98,82)', 'rgb(142,192,124)', 'rgb(250,189,47)', 'rgb(131,152,165)', 'rgb(211,134,155)', 'rgb(131,165,152)', 'rgb(232,225,207)']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='gruvbox-dark'

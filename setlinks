@@ -34,3 +34,6 @@ A gitk file here takes precedence over ~/.gitk (see man gitk), so it has been mo
 ~/.gitk to be used instead of $f" >> $(dirname "${f}")/why_old_readme.txt
     fi
 done
+
+# Install gnome-terminal theme
+dconf load /org/gnome/terminal/legacy/profiles:/:756a59a5-8749-4d56-9193-7f7bab917647/ < gogruvbox-dark.dconf
