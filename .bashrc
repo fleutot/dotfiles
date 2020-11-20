@@ -115,6 +115,8 @@ if [ $HOSTNAME == "vinden" ]; then
     # to solve this is to use revert instead.
     accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
     accentcolorfg='\[\e[96m\]'    # 96: light cyan
+    promptcolor='\[\e[7;96m\]'
+
     # clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
     clockdisp="[\$(date '+%k:%M')]"
     if [ $USER == "gauthier" ]; then
@@ -125,17 +127,20 @@ if [ $HOSTNAME == "vinden" ]; then
 elif [ $HOSTNAME == "ionian" ]; then
     accentcolorbkd=$txtblubkd
     accentcolorfg=$txtblu
+    promptcolor=$txtrst$txtblurev
     clockdisp="[\$(date '+%k:%M')]"
     user_host="\u@\h:"
 else
     accentcolorbkd=$txtwhtbkd
     accentcolorfg=$txtwht
+    promptcolor=$txtwhtrev
     clockdisp="[\$(date '+%k:%M')]"
     user_host="\u@\h:"
 fi
 
 gitcolorbkd=$txtylwbkd
-gitcolorfg=$txtblk
+gitcolor=$txtrst$txtylwrev
+
 # These are going to be redefined in the prompt command if the separator character is defined
 halfblockin=$txtrst$accentcolorbkd" "
 halfblockouttodollar=$txtrst$accentcolorbkd" "
@@ -175,17 +180,17 @@ function __prompt_command() {
     if [[ $LC_ALL != "C" ]]; then
         halfblockin=$txtrst$accentcolorbkd$resultcolorfg$'\u258b'
         halfblockouttodollar=$txtrst$accentcolorbkd$resultcolorfg$'\u2590'
-        halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
-        halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
+	halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
+	halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
     fi
 
-    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$accentcolorbkd$user_host\w"
+    PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$promptcolor$user_host\w"
     gitstring=$(git_ps1_no_sshfs)
 
     if [ "$gitstring" == "" ]; then
         PS1+="$halfblockouttodollar"
     else
-        PS1+="$halfblockouttogit$gitcolorbkd$gitcolorfg$gitstring$halfblockgittodollar"
+	PS1+="$halfblockouttogit$gitcolor$gitstring$halfblockgittodollar"
     fi
 
     if [ $EXIT != 0 ]; then
@@ -193,7 +198,6 @@ function __prompt_command() {
     fi
 
     PS1+="$txtrst$txtcynrev\$$txtrst "
-
 }
 
 if [ "$color_prompt" = yes ]; then
@@ -269,12 +273,13 @@ export PATH
 #    && equilux-theme-equilux-dev/install.sh \
 #    && rm -rf equilux* \
 #    && sed -i 's/symbolic/regular/g' /usr/share/themes/Equilux*/gnome-shell/gnome-shell.css
-GTK_THEME=Equilux-compact
+#GTK_THEME=Equilux-compact
+GTK_THEME=Arc-dark
 export GTK_THEME
 
 # GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
-# GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
-GTK2_RC_FILES=/usr/share/themes/Equilux-compact/gtk-2.0/gtkrc
+GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+# GTK2_RC_FILES=/usr/share/themes/Equilux-compact/gtk-2.0/gtkrc
 export GTK2_RC_FILES
 
 # lcam does not run if this is not set. Swedish chars do not work if it is set.
@@ -301,13 +306,14 @@ fi
 
 if [ $HOSTNAME == "vinden" ]; then
     # My nrf52-dk boards, to use with `make flash.$nrf0`
-    export nrf0=682641514
-    export nrf1=682672792
-    #export nrf2=682850131 # This one has disappeared somewhere.
-    export nrf2=682496772
+    export nrfA=682672792
+    export nrfB=682465587
+    export nrfC=682982047
+    export nrfD=682190327
+
     export jlink=268006363
     export nxp=621000000
-    export nrf4=683314787 # nrf52840dk
+    export nrf4=683516010 # nrf52840dk
 fi
 
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
