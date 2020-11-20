@@ -9,5 +9,7 @@ set completion-ignore-case on
 set show-all-if-ambiguous on
 
 # Arrows after writing the start of a command searches with that as a filter.
-"\e[A":history-search-backward
-"\e[B":history-search-forward
+# Removed: I never use it and it disturbs me when it happens unexpectedly.
+# Readded with "beginning", only match start of command.
+"\e[A":history-beginning-search-backward
+"\e[B":history-beginning-search-forward
