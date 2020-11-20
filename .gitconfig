@@ -30,3 +30,5 @@
 [diff]
     #external = side-by-side-diff-for-git.sh
 
+[status]
+	showUntrackedFiles = all
