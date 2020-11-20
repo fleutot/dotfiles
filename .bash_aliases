@@ -11,6 +11,8 @@ alias gr..='gitrootup'
 alias xo='xdg-open'
 alias fn='find -iname'
 alias fd='find -type d -iname'
+alias h='history'
+alias gh='history | grep'
 
 alias e='emacsclient -c -a ""'
 
@@ -25,6 +27,9 @@ alias g='git'
 alias gg='git g -10'
 alias gb='git branch'
 alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
+
+# Replace git with my-git, which has some protection against dangerous functions
+alias git='my-git'
 
 ag() {
     if [ -t 1 ]; then
@@ -41,7 +46,7 @@ fzf() {
 }
 
 fzf_cd() {
-    find -type d -maxdepth 1 | fzf | cd
+    cd $(find . -maxdepth 1 -type d | fzf)
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -61,13 +66,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # cd-like functions, but relative to git root.
-function cm()
+cm()
 {
     local cm_topp=$(git rev-parse --show-toplevel 2>/dev/null || echo ~/code/mira)
     cd "$cm_topp/$1"
 }
 # for cm bash completion
-function _cm()
+_cm()
 {
     local cm_topp=$(git rev-parse --show-toplevel 2>/dev/null || echo ~/code/mira)
     pushd "$cm_topp" > /dev/null
@@ -77,21 +82,21 @@ function _cm()
 complete -o nospace -F _cm cm
 
 # cd activates virtualenv if is exists
-function cd() {
+cd() {
     builtin cd "$@"
 
     if [ $(dirname "$VIRTUAL_ENV") == $(pwd) ] ; then
-	# Already at the active virtual env
-	return
+        # Already at the active virtual env
+        return
     fi
 
     if [[ -d ./venv ]] ; then
-	if type deactivate > /dev/null 2>&1 ; then
-	    printf "Deactivating virtualenv %s\n" "$VIRTUAL_ENV"
-	    deactivate
-	fi
+        if type deactivate > /dev/null 2>&1 ; then
+            printf "Deactivating virtualenv %s\n" "$VIRTUAL_ENV"
+            deactivate
+        fi
 
-	source ./venv/bin/activate
-	printf "Setting up   virtualenv %s\n" "$VIRTUAL_ENV"
+        source ./venv/bin/activate
+        printf "Setting up   virtualenv %s\n" "$VIRTUAL_ENV"
     fi
 }
