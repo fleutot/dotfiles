@@ -325,3 +325,5 @@ fi
 export IGNOREEOF=2
 
 export LD_LIBRARY_PATH="/opt/JLink_Linux_V644h_x86_64:$LD_LIBRARY_PATH"
+
+export HISTIGNORE="git reset --hard*"
