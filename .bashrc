@@ -147,6 +147,8 @@ halfblockouttodollar=$txtrst$accentcolorbkd" "
 halfblockouttogit=$txtrst$accentcolorbkd" "
 halfblockgittodollar=$txtrst$accentcolorbkd""
 
+source ~/bin/git-prompt
+
 function __prompt_command() {
     local EXIT="$?"
     PS1="${debian_chroot:+($debian_chroot)}$promptbkgd"
@@ -257,7 +259,7 @@ fi
 #export PROMPT_COMMAND="$PROMPT_COMMAND; pid-urgent \$PPID 2>/dev/null"
 
 # PATH update was somewhere else when I used sobel, but I can't find where. Add here
-PATH=~/bin:$PATH
+PATH=~/bin:/opt:$PATH
 export PATH
 
 # Themes seem to be located at /usr/share/themes
@@ -333,3 +335,12 @@ export IGNOREEOF=2
 export LD_LIBRARY_PATH="/opt/JLink_Linux_V644h_x86_64:$LD_LIBRARY_PATH"
 
 export HISTIGNORE="git reset --hard*"
+
+# Created by `userpath` on 2020-01-05 20:29:06
+export PATH="$PATH:/home/gauthier/.local/bin"
+
+# Qt for building MuseScore
+# This seems to bork the theme for Jamulus?
+export PATH="/opt/Qt/5.9.9/gcc_64/bin/:$PATH"
+
+export PATH="/opt:$PATH"
