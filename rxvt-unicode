@@ -1,0 +1,33 @@
+! #include "urxvt/hybrid.theme"
+! #include "urxvt/gruvbox.theme"
+#include "urxvt/gogruvbox.theme"
+
+! urxvt
+! Make the scrollbar look a little less 1980s.
+URxvt*scrollstyle: plain ! See URxvt*scrollBar
+URxvt*scrollBar_right: true
+URxvt*scrollBar: false
+URxvt*font:		xft:Terminus:style=Regular:pixelsize=13
+URxvt*internalBorder: 4
+URxvt*cursorBlink: true
+
+! change to red background
+URxvt.keysym.C-7: command:\033]11;#ff0000\007
+
+! change to light background
+URxvt.keysym.C-8: command:\033]11;#ffffff\007
+
+! change to dark gray background
+URxvt.keysym.C-9: command:\033]11;#777777\007
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! Disable printing the terminal contents when pressing PrintScreen.
+URxvt.print-pipe: "cat > /dev/null"

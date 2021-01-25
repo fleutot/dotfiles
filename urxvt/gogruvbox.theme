@@ -1,0 +1,42 @@
+!['rgb(40,40,40)', 'rgb(204,36,29)', 'rgb(152,151,26)', 'rgb(215,153,33)',
+!'rgb(69,133,136)', 'rgb(177,98,134)', 'rgb(104,157,106)', 'rgb(189,174,147)',
+!
+!'rgb(124,111,100)', 'rgb(251,73,52)', 'rgb(184,187,38)', 'rgb(250,189,47)',
+!'rgb(131,165,152)', 'rgb(211,134,155)', 'rgb(142,192,124)', 'rgb(235,219,178)']
+! special
+*.foreground:   #ebdbb2
+*.background:   #424039
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282828
+*.color8:       #7c6f64
+
+! red
+*.color1:       #c93933
+*.color9:       #fb4934
+
+! green
+*.color2:       #98971a
+*.color10:      #b8bb26
+
+! yellow
+*.color3:       #d79921
+*.color11:      #fabd2f
+
+! blue
+*.color4:       #458588
+*.color12:      #83a598
+
+! magenta
+*.color5:       #b16286
+*.color13:      #d3869b
+
+! cyan
+*.color6:       #689d6a
+*.color14:      #8ec07c
+
+! white
+*.color7:       #bdae92
+*.color15:      #ebdbb2
+

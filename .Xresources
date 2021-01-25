@@ -36,3 +36,5 @@ xscreensaver.passwd.thermometer.width:       6
 ! Added 170921 to try and get normal sized cursor. Lets see if that works after login.
 Xcursor.size: 32
 Xft.dpi: 100
+
+#include "dotfiles/rxvt-unicode"

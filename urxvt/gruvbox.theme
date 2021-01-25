@@ -1,0 +1,38 @@
+! Collection / hybrid from https://terminal.sexy/
+! special
+*.foreground:   #ada387
+*.background:   #34322e
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282828
+*.color8:       #7c6f64
+
+! red
+*.color1:       #c84944
+*.color9:       #e76252
+
+! green
+*.color2:       #689d6a
+*.color10:      #8ec07c
+
+! yellow
+*.color3:       #d79921
+*.color11:      #fabd2f
+
+! blue
+*.color4:       #456e88
+*.color12:      #8398a5
+
+! magenta
+*.color5:       #b16286
+*.color13:      #d3869b
+
+! cyan
+*.color6:       #458588
+*.color14:      #83a598
+
+! white
+*.color7:       #d2cabd
+*.color15:      #e8e1cf
+
