@@ -344,3 +344,9 @@ export PATH="$PATH:/home/gauthier/.local/bin"
 export PATH="/opt/Qt/5.9.9/gcc_64/bin/:$PATH"
 
 export PATH="/opt:$PATH"
+
+if [[ -n $SSH_CONNECTION ]] ; then
+    echo "Opening SSH key for further connections..."
+    eval $(ssh-agent)
+    ssh-add
+fi

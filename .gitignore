@@ -1,6 +1,9 @@
 *.o
 TAGS
 *.co
+GPATH
+GTAGS
+GRTAGS
 
 # emacs backup files
 *~
