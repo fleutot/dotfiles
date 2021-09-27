@@ -110,7 +110,7 @@ MVTO80='\[\e[;80H\]'
 unset promptbkgd
 
 # Different accent color if the current host is not my usual machine.
-if [ $HOSTNAME == "vinden" ]; then
+if [ $HOSTNAME == "taket" ]; then
     # NOTE: 106 does not work in emacs term, it's non-standard. A possible way
     # to solve this is to use revert instead.
     accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
@@ -262,28 +262,6 @@ fi
 PATH=~/bin:/opt:$PATH
 export PATH
 
-# Themes seem to be located at /usr/share/themes
-#GTK_THEME=Vertex-Dark
-#GTK_THEME=Adwaita:dark
-# Install with `sudo apt install arc-theme`
-# GTK_THEME=Arc-dark
-# GTK_THEME=Blackbird
-# Equilux installed with:
-#cd /tmp \
-#    && wget -O equilux.zip https://github.com/ddnexus/equilux-theme/archive/equilux-dev.zip \
-#    && unzip equilux.zip \
-#    && equilux-theme-equilux-dev/install.sh \
-#    && rm -rf equilux* \
-#    && sed -i 's/symbolic/regular/g' /usr/share/themes/Equilux*/gnome-shell/gnome-shell.css
-#GTK_THEME=Equilux-compact
-GTK_THEME=Arc-dark
-export GTK_THEME
-
-# GTK2_RC_FILES=/usr/share/themes/Vertex-Dark/gtk-2.0/gtkrc
-GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
-# GTK2_RC_FILES=/usr/share/themes/Equilux-compact/gtk-2.0/gtkrc
-export GTK2_RC_FILES
-
 # lcam does not run if this is not set. Swedish chars do not work if it is set.
 #export LC_ALL=C
 
@@ -302,9 +280,10 @@ if [ -d "/opt/SEGGER" ]; then
  export NRF52_JLINK_PATH="/opt/SEGGER/"
 fi
 
-if [ -d "/opt/gcc-arm-none-eabi-4_9-2015q3/bin" ]; then
- export PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:$PATH"
-fi
+# Testing arm-none-eabi from apt
+#if [ -d "/opt/gcc-arm-none-eabi-4_9-2015q3/bin" ]; then
+# export PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:$PATH"
+#fi
 
 if [ $HOSTNAME == "vinden" ]; then
     # My nrf52-dk boards, to use with `make flash.$nrf0`
@@ -350,3 +329,8 @@ if [[ -n $SSH_CONNECTION ]] ; then
     eval $(ssh-agent)
     ssh-add
 fi
+
+# nrf5-sdk requires these variables to find arm-none-eabi-* for building bootloader
+export GNU_INSTALL_ROOT=/usr/bin/
+export GNU_VERSION=9.2.1
+export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}

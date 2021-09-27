@@ -36,4 +36,8 @@ A gitk file here takes precedence over ~/.gitk (see man gitk), so it has been mo
 done
 
 # Install gnome-terminal theme
+# Note: you might need to first create a profile in gnome-terminal, get its key
+# with dconf-editor, and replace the key below. Doing it the way below does not
+# seem to update the list of available profiles, so profile created by this
+# command is not selectable in the dropdown menu otherwise.
 dconf load /org/gnome/terminal/legacy/profiles:/:756a59a5-8749-4d56-9193-7f7bab917647/ < gogruvbox-dark.dconf
