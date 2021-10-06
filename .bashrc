@@ -330,7 +330,10 @@ if [[ -n $SSH_CONNECTION ]] ; then
     ssh-add
 fi
 
-# nrf5-sdk requires these variables to find arm-none-eabi-* for building bootloader
-export GNU_INSTALL_ROOT=/usr/bin/
-export GNU_VERSION=9.2.1
+# nrf5-sdk requires these variables to find arm-none-eabi-* for building
+# bootloader. Note: arm-none-eabi-gcc from apt (9.2.1) cannot build the dfu
+# secure bootloader example from Nordic. There isn't room in flash. Version
+# 10.3.1 here works.
+export GNU_INSTALL_ROOT=/opt/gcc-arm-none-eabi-10.3-2021.07/bin/
+export GNU_VERSION=10.3.1
 export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}
