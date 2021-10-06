@@ -18,7 +18,7 @@
     st = status
     sm = submodule
     g = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset%x09%s%C(auto)%d%Creset' --abbrev-commit --date=short
-    graph = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset%x09%Cblue[%an]%Creset%x09%s%C(auto)%d%Creset' --abbrev-commit --date=short
+    graph = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset%x09%Cblue[%an]%Creset%x09%s%C(auto)%d%Creset' --abbrev-commit --date=short # --all
     exec = !exec
 [push]
     #default = simple
