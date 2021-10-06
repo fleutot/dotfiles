@@ -337,3 +337,5 @@ fi
 export GNU_INSTALL_ROOT=/opt/gcc-arm-none-eabi-10.3-2021.07/bin/
 export GNU_VERSION=10.3.1
 export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}
+
+export PYTHONSTARTUP=~/.pythonstartup
