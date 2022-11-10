@@ -302,11 +302,8 @@ if [ $HOSTNAME == "vinden" ]; then
     export nrf4=683516010 # nrf52840dk
 fi
 
-if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ]; then
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-elif [ -d "/usr/lib/jvm/java-8-oracle/" ]; then
-    export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-fi
+export JAVA_HOME=/usr/lib/jvm/openjdk-11/
+export PATH=${PATH}:${JAVA_HOME}/bin
 
 # For running cooja via X-forwarding in a non-reparentign WM (xmonad)
 if [ -z $DESKTOP_VERSION ]; then
@@ -329,10 +326,21 @@ export PATH="/opt/Qt/5.9.9/gcc_64/bin/:$PATH"
 
 export PATH="/opt:$PATH"
 
+export PATH="$PATH:/opt/android-studio/bin"
+export ANDROID_HOME=~/Android/Sdk
+export ADB=$(which adb)
+export PATH=$PATH:~/Android/Sdk/tools
+export PATH=$PATH:~/Android/Sdk/platform-tools
+
 if [[ -n $SSH_CONNECTION ]] ; then
     echo "Opening SSH key for further connections..."
     eval $(ssh-agent)
     ssh-add
+fi
+
+if type fzf >/dev/null 2>&1 ; then
+    source /usr/share/doc/fzf/examples/completion.bash
+    source /usr/share/doc/fzf/examples/key-bindings.bash
 fi
 
 # nrf5-sdk requires these variables to find arm-none-eabi-* for building
@@ -344,3 +352,4 @@ export GNU_VERSION=10.3.1
 export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}
 
 export PYTHONSTARTUP=~/.pythonstartup
+. "$HOME/.cargo/env"
