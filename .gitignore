@@ -4,6 +4,7 @@ TAGS
 GPATH
 GTAGS
 GRTAGS
+.dir-locals.el
 
 # emacs backup files
 *~
@@ -13,3 +14,7 @@ GRTAGS
 # build directories
 _build
 build
+
+# lsp files
+**/.cache/*
+**/compile_commands.json
