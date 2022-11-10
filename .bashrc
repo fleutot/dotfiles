@@ -235,6 +235,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     fi
 fi
 
+# Completion for nrfjprog by Mikael Ågren
+if [ -f ~/bin/nrfjprog-completion.sh ] ; then
+    . ~/bin/nrfjprog-completion.sh
+fi
+
 # Emacs daemon and client management.
 # Emacs --daemon must already be running (e.g. started on log in).
 # from http://www.emacswiki.org/emacs/EmacsAsDaemon
