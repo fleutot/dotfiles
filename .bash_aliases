@@ -36,13 +36,8 @@ ag() {
         # pass default options, pager
 	/usr/bin/env ag --ignore-dir vendor/contiki --ignore-dir build --color --group "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init
     else
-	/usr/bin/env ag $*
+	/usr/bin/env ag "$@"
     fi
-}
-
-# Is this really needed??
-fzf() {
-    ~/bin/fzf $*
 }
 
 fzf_cd() {
