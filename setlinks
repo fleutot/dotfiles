@@ -3,24 +3,31 @@
 this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 this_script="${this_dir}/$(basename "${BASH_SOURCE[0]}")"
 
-for f in $(find -maxdepth 1 -name ".*" -type f); do
+for f in $(find . -maxdepth 1 -name ".*" -type f); do
     if [[ -e $HOME/$f ]]; then
-        mv $HOME/$f $HOME/$f.old
+	mv "$HOME/$f" "$HOME/$f.old"
     fi
-    ln -s ${this_dir}/$f $HOME/$f
+    ln -s "${this_dir}/$f" "$HOME/$f"
 done
 
 gdb_origin=${this_dir}/gdbinit/gdbinit
 gdb_link=$HOME/.gdbinit
 if [[ -f ${gdb_origin} ]] ; then
-    ln -s ${gdb_origin} ${gdb_link}
+    ln -s "${gdb_origin}" "${gdb_link}"
 fi
 
 zathura_origin=${this_dir}/zathurarc
 zathura_link=$HOME/.config/zathura/zathurarc
 if [[ -f ${zathura_origin} ]] ; then
-    mkdir -p $(dirname ${zathura_link})
-    ln -s ${zathura_origin} ${zathura_link}
+    mkdir -p "$(dirname "${zathura_link}")"
+    ln -s "${zathura_origin}" "${zathura_link}"
+fi
+
+dunst_origin=$(this_dir)/dunstrc
+dunst_link=$HOME/.config/dunst/dunstrc
+if [[ -f ${dunst_origin} ]] ; then
+    mkdir -p "$(dirname "${dunst_link}")"
+    ln -s "${dunst_origin}" "${dunst_link}"
 fi
 
 # Back up and clean other gitk files that may be interfering
@@ -31,7 +38,7 @@ for f in $potential_other_gitk_files; do
         mv "${f}" "${f}.backup"
         echo -e "gitk.backup was created by $this_script\n
 A gitk file here takes precedence over ~/.gitk (see man gitk), so it has been moved out of the way.\n
-~/.gitk to be used instead of $f" >> $(dirname "${f}")/why_old_readme.txt
+~/.gitk to be used instead of $f" >> "$(dirname ${f})"/why_old_readme.txt
     fi
 done
 

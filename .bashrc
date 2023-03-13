@@ -302,7 +302,7 @@ if [ $HOSTNAME == "vinden" ]; then
     export nrf4=683516010 # nrf52840dk
 fi
 
-export JAVA_HOME=/usr/lib/jvm/openjdk-11/
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 export PATH=${PATH}:${JAVA_HOME}/bin
 
 # For running cooja via X-forwarding in a non-reparentign WM (xmonad)
@@ -353,3 +353,5 @@ export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}
 
 export PYTHONSTARTUP=~/.pythonstartup
 . "$HOME/.cargo/env"
+
+export MIRA_LICENSES_DIR=$HOME/.mira_licenses
