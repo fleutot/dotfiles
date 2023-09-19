@@ -355,3 +355,6 @@ export PYTHONSTARTUP=~/.pythonstartup
 . "$HOME/.cargo/env"
 
 export MIRA_LICENSES_DIR=$HOME/.mira_licenses
+
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"

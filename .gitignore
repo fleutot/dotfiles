@@ -5,6 +5,7 @@ GPATH
 GTAGS
 GRTAGS
 .dir-locals.el
+.clangd
 
 # emacs backup files
 *~

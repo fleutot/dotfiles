@@ -1,8 +1,3 @@
-# gnome-open, in order to use the default application to open a file.
-# For example to open a doc with the default editor: $ go my_doc.doc
-alias go=gnome-open
-
-# other aliases
 alias pag='ps aux | grep'
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias gitrootup='cd .. && gitroot'
@@ -27,6 +22,7 @@ alias g='git'
 alias gg='git g -10'
 alias gb='git branch'
 alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
+alias gsmu='git submodule update --init --recursive'
 
 # Replace git with my-git, which has some protection against dangerous functions
 alias git='my-git'
