@@ -23,7 +23,7 @@ if [[ -f ${zathura_origin} ]] ; then
     ln -s "${zathura_origin}" "${zathura_link}"
 fi
 
-dunst_origin=$(this_dir)/dunstrc
+dunst_origin=${this_dir}/dunstrc
 dunst_link=$HOME/.config/dunst/dunstrc
 if [[ -f ${dunst_origin} ]] ; then
     mkdir -p "$(dirname "${dunst_link}")"
