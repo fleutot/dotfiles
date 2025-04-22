@@ -110,7 +110,7 @@ MVTO80='\[\e[;80H\]'
 unset promptbkgd
 
 # Different accent color if the current host is not my usual machine.
-if [ $HOSTNAME == "taket" ]; then
+if [ $HOSTNAME == "L34NJKX3" ]; then
     # NOTE: 106 does not work in emacs term, it's non-standard. A possible way
     # to solve this is to use revert instead.
     accentcolorbkd='\[\e[106m\]'  # 106: light cyan background
@@ -119,7 +119,7 @@ if [ $HOSTNAME == "taket" ]; then
 
     # clockdisp="[\$(date '+%y%m%d %k:%M:%S')]"
     clockdisp="[\$(date '+%k:%M')]"
-    if [ $USER == "gauthier" ]; then
+    if [ $USER == "gostervall" ]; then
 	user_host="" # don't print user and host if it's me on my usual machine
     else
 	user_host="\u@\h:"
@@ -343,18 +343,8 @@ if type fzf >/dev/null 2>&1 ; then
     source /usr/share/doc/fzf/examples/key-bindings.bash
 fi
 
-# nrf5-sdk requires these variables to find arm-none-eabi-* for building
-# bootloader. Note: arm-none-eabi-gcc from apt (9.2.1) cannot build the dfu
-# secure bootloader example from Nordic. There isn't room in flash. Version
-# 10.3.1 here works.
-export GNU_INSTALL_ROOT=/opt/gcc-arm-none-eabi-10.3-2021.07/bin/
-export GNU_VERSION=10.3.1
-export GNU_PREFIX=${GNU_PREFIX:-arm-none-eabi}
+source .bash_secret_envvars
 
-export PYTHONSTARTUP=~/.pythonstartup
-. "$HOME/.cargo/env"
-
-export MIRA_LICENSES_DIR=$HOME/.mira_licenses
-
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
+export XSECURELOCK_SAVER_IMAGE_DIR=~/Pictures/lock_backgrounds
+export XSECURELOCK_SAVER=/usr/local/bin/lock-with-image-photo-saver
+export XSECURELOCK_SAVER_IMAGE=$(find "$XSECURELOCK_SAVER_IMAGE_DIR" -type f | sort -R | head -1)

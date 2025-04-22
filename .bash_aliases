@@ -37,7 +37,7 @@ ag() {
 }
 
 fzf_cd() {
-    cd $(find . -maxdepth 1 -type d | fzf)
+    cd "$(find . -maxdepth 1 -type d | fzf)" || exit
 }
 
 # Add an "alert" alias for long running commands.  Use like so:

@@ -1,6 +1,6 @@
 [user]
     name = Gauthier Östervall
-    email = gauthier.ostervall@lumenradio.com
+    email = gostervall@markem-imaje.com
 [core]
     editor = emacsclient -c -a emacs
     #editor = emacs -nw
