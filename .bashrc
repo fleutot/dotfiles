@@ -348,3 +348,6 @@ source .bash_secret_envvars
 export XSECURELOCK_SAVER_IMAGE_DIR=~/Pictures/lock_backgrounds
 export XSECURELOCK_SAVER=/usr/local/bin/lock-with-image-photo-saver
 export XSECURELOCK_SAVER_IMAGE=$(find "$XSECURELOCK_SAVER_IMAGE_DIR" -type f | sort -R | head -1)
+
+# for loading svd files in .gdbinit files
+export GDB_SVD_SCRIPT=~/src/PyCortexMDebug/scripts/gdb.py
