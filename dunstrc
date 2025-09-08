@@ -423,3 +423,14 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+# Debugging:
+[chrome_normal]
+    appname = "Google Chrome"
+    urgency = normal
+
+[chrome_override]
+    appname = "Google Chrome"
+    urgency = normal
+    background = "#555555"
+    foreground = "#ffffff"
