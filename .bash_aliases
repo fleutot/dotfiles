@@ -23,6 +23,7 @@ alias gg='git g -10'
 alias gb='git branch'
 alias gd='git diff --no-ext-diff' # Explicit `git diff` might call to external diff
 alias gsmu='git submodule update --init --recursive'
+alias gnohook='git -c core.hooksPath=/dev/null'
 
 # Replace git with my-git, which has some protection against dangerous functions
 alias git='my-git'

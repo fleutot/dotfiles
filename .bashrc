@@ -182,8 +182,8 @@ function __prompt_command() {
     if [[ $LC_ALL != "C" ]]; then
         halfblockin=$txtrst$accentcolorbkd$resultcolorfg$'\u258b'
         halfblockouttodollar=$txtrst$accentcolorbkd$resultcolorfg$'\u2590'
-	halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
-	halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
+        halfblockouttogit=$txtrst$accentcolorfg$gitcolorbkd$'\u258b'
+        halfblockgittodollar=$txtrst$resultcolorfg$gitcolorbkd$'\u2590'
     fi
 
     PS1+="$clockdisp$stopped$running$halfblockin$txtrst$txtblk$promptcolor$user_host\w"
@@ -351,6 +351,3 @@ export XSECURELOCK_SAVER_IMAGE=$(find "$XSECURELOCK_SAVER_IMAGE_DIR" -type f | s
 
 # for loading svd files in .gdbinit files
 export GDB_SVD_SCRIPT=~/src/PyCortexMDebug/scripts/gdb.py
-
-export PICOPROBE_SERIAL_X=E6633861A312422C
-export PICOPROBE_SERIAL_Y=E6633861A37F802C
